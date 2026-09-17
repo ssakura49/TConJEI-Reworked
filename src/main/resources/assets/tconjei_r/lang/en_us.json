@@ -1,0 +1,19 @@
+{
+    "tconjei_r.tool_stats.harvest":  "Harvest Stats",
+    "tconjei_r.tool_stats.ranged":  "Ranged Stats",
+    "tconjei_r.tool_stats.armor":  "Armor Stats",
+    "tconjei_r.tool_stats.curio": "Curio Stats",
+    "tconjei_r.tool_stats.laser_gun": "Laser Gun Stats",
+    "tconjei_r.tool_stats.skull":  "Slimeskull Stats",
+
+    "tconjei_r.tooltip.tier": "Tier %s",
+    "tconjei_r.tooltip.material": "material",
+    "tconjei_r.tooltip.separator": ", ",
+    "tconjei_r.tooltip.and": "and ",
+
+    "tconjei_r.tooltip.harvest": " harvest material",
+    "tconjei_r.tooltip.ranged": " ranged material",
+    "tconjei_r.tooltip.armor": " armor material",
+    "tconjei_r.tooltip.curio": " curio material",
+    "tconjei_r.tooltip.laser_gun": " laser gun material"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "tconjei:data_demo_stats",
+  "titleKey": "tconjei.tool_stats.data_demo",
+  "icon": "tconstruct:textures/gui/icons.png",
+  "iconU": 0,
+  "iconV": 0,
+  "statsIds": ["tconstruct:head", "tconstruct:handle"],
+  "tag": "tconstruct:modifiable",
+  "catalyst": "tinker_station"
+}

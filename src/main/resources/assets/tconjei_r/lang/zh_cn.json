@@ -1,0 +1,18 @@
+{
+  "tconjei.tool_stats.harvest":  "采掘数据",
+  "tconjei.tool_stats.ranged":  "远程数据",
+  "tconjei.tool_stats.armor":  "盔甲数据",
+  "tconjei.tool_stats.curio": "护符数据",
+  "tconjei.tool_stats.laser_gun": "激光枪数据",
+
+  "tconjei.tooltip.tier": "%s级",
+  "tconjei.tooltip.separator": ", ",
+  "tconjei.tooltip.and": "和",
+  "tconjei.tooltip.material": "材料",
+
+  "tconjei.tooltip.harvest": "采掘",
+  "tconjei.tooltip.ranged": "远程",
+  "tconjei.tooltip.armor": "盔甲",
+  "tconjei.tooltip.curio": "护符",
+  "tconjei.tooltip.laser_gun": "激光枪"
+}

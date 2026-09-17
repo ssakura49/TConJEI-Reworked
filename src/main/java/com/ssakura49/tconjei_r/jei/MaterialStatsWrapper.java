@@ -1,0 +1,77 @@
+package com.ssakura49.tconjei_r.jei;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fluids.FluidStack;
+import slimeknights.mantle.recipe.helper.RecipeHelper;
+import slimeknights.tconstruct.library.materials.IMaterialRegistry;
+import slimeknights.tconstruct.library.materials.MaterialRegistry;
+import slimeknights.tconstruct.library.materials.definition.IMaterial;
+import slimeknights.tconstruct.library.materials.definition.MaterialId;
+import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
+import slimeknights.tconstruct.library.materials.stats.IMaterialStats;
+import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
+import slimeknights.tconstruct.library.modifiers.ModifierEntry;
+import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
+import slimeknights.tconstruct.library.recipe.casting.material.MaterialCastingLookup;
+import slimeknights.tconstruct.library.recipe.material.MaterialRecipe;
+import slimeknights.tconstruct.tools.TinkerToolParts;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+public record MaterialStatsWrapper(IMaterial material) {
+    private static IMaterialRegistry registry;
+
+    private static IMaterialRegistry registry() {
+        if (registry == null) {
+            registry = MaterialRegistry.getInstance();
+        }
+        return registry;
+    }
+
+    public MaterialId getMaterialId() {
+        return material.getIdentifier().getId();
+    }
+
+    public List<ItemStack> getInputs() {
+        Level world = Minecraft.getInstance().level;
+        if (world == null) {
+            return Collections.emptyList();
+        }
+        List<ItemStack> repairStacks;
+        MaterialVariantId variantId = MaterialVariantId.parse(material.getIdentifier().toString());
+        repairStacks = RecipeHelper.getUIRecipes(world.getRecipeManager(), TinkerRecipeTypes.MATERIAL.get(), MaterialRecipe.class, recipe -> variantId.matchesVariant(recipe.getMaterial()))
+                .stream()
+                .flatMap(recipe -> Arrays.stream(recipe.getIngredient().getItems()))
+                .toList();
+        if (repairStacks.isEmpty()) {
+            repairStacks = Collections.singletonList(TinkerToolParts.repairKit.get().withMaterialForDisplay(variantId));
+        }
+        return repairStacks;
+    }
+
+    public FluidStack getFluidStack() {
+        return MaterialCastingLookup.getCastingFluids(material.getIdentifier())
+                .stream()
+                .flatMap(recipe -> recipe.getFluids().stream())
+                .findFirst()
+                .orElse(FluidStack.EMPTY);
+    }
+
+    public <T extends IMaterialStats> Optional<T> getStats(MaterialStatsId materialStatsId) {
+        return registry().getMaterialStats(getMaterialId(), materialStatsId);
+    }
+
+    public boolean hasStats(List<MaterialStatsId> statsIds) {
+        return statsIds.stream().anyMatch(stat -> getStats(stat).isPresent());
+    }
+
+    public List<ModifierEntry> getTraits(MaterialStatsId materialStatsId) {
+        return registry().getTraits(material.getIdentifier().getId(), materialStatsId);
+    }
+
+}
