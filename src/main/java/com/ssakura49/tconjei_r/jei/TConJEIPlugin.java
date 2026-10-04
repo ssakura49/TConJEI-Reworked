@@ -94,9 +94,6 @@ public class TConJEIPlugin implements IModPlugin {
         registration.addRecipeCategories(new RangedStatsCategory(guiHelper));
         registration.addRecipeCategories(new ArmorStatsCategory(guiHelper));
         registration.addRecipeCategories(new SlimeskullStatsCategory(guiHelper));
-
-        registration.addRecipeCategories(new LaserGunStatsCategory(guiHelper));
-
         for (var reg : TConJEIAPIImpl.REGISTRATIONS) {
             try {
                 AbstractMaterialStatsCategory cat = reg.category().apply(guiHelper);

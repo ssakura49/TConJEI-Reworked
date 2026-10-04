@@ -1,15 +1,9 @@
 package com.ssakura49.tconjei_r;
 
-import com.ssakura49.sakuratinker_tools.library.tools.stats.CharmChainMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.EnergyUnitMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.LaserMediumMaterialStats;
-import com.ssakura49.sakuratinker_tools.library.tools.stats.STTStatlessMaterialStats;
 import com.ssakura49.tconjei_r.api.TConJEIAPI;
 import com.ssakura49.tconjei_r.api.TConJEIAPIImpl;
 import com.ssakura49.tconjei_r.client.ClientConfig;
-import com.ssakura49.tconjei_r.jei.CurioStatsCategory;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -51,19 +45,6 @@ public class TConJEI {
     @SubscribeEvent
     public void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            API().registerStatsCategory(
-                    new ResourceLocation(MOD_ID, "curio_stats"),
-                    Component.translatable("tconjei.tool_stats.curio"),
-                    new ResourceLocation(MOD_ID, "textures/gui/jei.png"),
-                    48, 0,
-                    List.of(CharmChainMaterialStats.ID, STTStatlessMaterialStats.CHARM_CORE.getIdentifier()),
-                    CurioStatsCategory::new,
-                    TConJEIAPI.CatalystType.TINKER_STATION
-            );
-            API().registerTooltip(
-                new ResourceLocation(MOD_ID, "curio_stats_tooltip"),
-                Component.translatable("tconjei.tooltip.curio"),
-                List.of(CharmChainMaterialStats.ID, STTStatlessMaterialStats.CHARM_CORE.getIdentifier()));
         });
     }
 
@@ -88,8 +69,8 @@ public class TConJEI {
                 StatlessMaterialStats.SHIELD_CORE.getIdentifier()
         );
         static final List<MaterialStatsId> LASER_GUN = List.of(
-                LaserMediumMaterialStats.ID,
-                EnergyUnitMaterialStats.ID
+                new MaterialStatsId("sakuratinker", "laser_medium"),
+                new MaterialStatsId("sakuratinker", "energy_unit")
         );
     }
 

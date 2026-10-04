@@ -1,0 +1,26 @@
+{
+  "id": "tconjei_r:curio_stats",
+  "titleKey": "tconjei_r.tool_stats.curio",
+  "icon": "tconjei_r:textures/gui/jei.png",
+  "iconU": 48,
+  "iconV": 0,
+  "statsIds": [
+    "sakuratinker:charm_chain",
+    "sakuratinker:charm_core"
+  ],
+  "tag": "tconstruct:armor",
+  "catalyst": "tinker_station",
+  "tooltips": [
+    {
+      "tooltipId": "tconjei_r:curio_stats_tooltip",
+      "tooltipKey": "tconjei_r.tooltip.curio",
+      "statsIds": [
+        "sakuratinker:charm_chain",
+        "sakuratinker:charm_core"
+      ]
+    }
+  ],
+  "requiresMods": [
+    "sakuratinker_tools"
+  ]
+}

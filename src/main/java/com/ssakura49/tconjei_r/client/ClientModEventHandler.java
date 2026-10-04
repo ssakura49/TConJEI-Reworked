@@ -38,7 +38,28 @@ public class ClientModEventHandler {
             folder.mkdirs();
 
             ResourceLocation texture = new ResourceLocation(MOD_ID, "tconjeidark.zip");
-            InputStream in = Minecraft.getInstance().getResourceManager().getResource(texture).get().open();
+            InputStream in = Minecraft.getInstance().getResourceManager()
+                    .getResource(texture)
+                    .map(r -> {
+                        try { return r.open(); } catch (IOException ex) { return null; }
+                    })
+                    .orElse(null);
+
+            if (in == null) {
+                LogUtils.getLogger().error("Resource not found: {}", texture);
+                return;
+            }
+
+            try (InputStream src = in; FileOutputStream out = new FileOutputStream(copy)) {
+                byte[] buffer = new byte[4096];
+                int read;
+                while ((read = src.read(buffer)) > 0) {
+                    out.write(buffer, 0, read);
+                    out.flush();
+                }
+            } catch (IOException e) {
+                LogUtils.getLogger().error("Failed to copy built-in resource pack", e);
+            }
             FileOutputStream out = new FileOutputStream(copy);
 
             byte[] buffer = new byte[4096];

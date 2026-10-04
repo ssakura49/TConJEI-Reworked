@@ -1,0 +1,18 @@
+{
+  "id": "tconjei_r:laser_gun_stats",
+  "titleKey": "tconjei_r.tool_stats.laser_gun",
+  "icon": "tconjei_r:textures/gui/jei.png",
+  "iconU": 64,
+  "iconV": 0,
+  "statsIds": [
+    "tconstruct:head",
+    "sakuratinker:energy_unit",
+    "sakuratinker:laser_medium",
+    "tconstruct:handle"
+  ],
+  "tag": "tconstruct:harvest",
+  "catalyst": "tinker_station",
+  "requiresMods": [
+    "sakuratinker_tools"
+  ]
+}
