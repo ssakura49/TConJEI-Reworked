@@ -16,7 +16,7 @@ public class HarvestStatsCategory extends AbstractMaterialStatsCategory {
     public HarvestStatsCategory(IGuiHelper guiHelper) {
         super(guiHelper);
         this.icon = guiHelper.createDrawable(new ResourceLocation(MOD_ID, "textures/gui/jei.png"), 0, 0, 16, 16);
-        this.title = Component.translatable("tconjei.tool_stats.harvest");
+        this.title = Component.translatable("tconjei_r.tool_stats.harvest");
         this.recipeType = TConJEIPlugin.HARVEST_STATS;
         this.statsIds = List.of(HeadMaterialStats.ID, StatlessMaterialStats.BINDING.getIdentifier(), HandleMaterialStats.ID);
         this.tag = TinkerTags.Items.HARVEST;

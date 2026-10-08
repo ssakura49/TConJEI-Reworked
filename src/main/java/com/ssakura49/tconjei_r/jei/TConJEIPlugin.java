@@ -35,7 +35,6 @@ public class TConJEIPlugin implements IModPlugin {
     public static final RecipeType<MaterialStatsWrapper> SKULL_STATS = RecipeType.create(MOD_ID, "skull_stats", MaterialStatsWrapper.class);
 
 
-    //public static final RecipeType<MaterialStatsWrapper> CURIO_STATS = RecipeType.create(MOD_ID, "curio_stats", MaterialStatsWrapper.class);
     public static final RecipeType<MaterialStatsWrapper> LASE_GUN_STATS = RecipeType.create(MOD_ID, "laser_gun_stats", MaterialStatsWrapper.class);
 
     @NotNull

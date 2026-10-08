@@ -21,7 +21,7 @@ public class SlimeskullStatsCategory extends AbstractMaterialStatsCategory {
     public SlimeskullStatsCategory(IGuiHelper guiHelper) {
         super(guiHelper);
         this.icon = guiHelper.createDrawableItemLike(Items.SKELETON_SKULL);
-        this.title = Component.translatable("tconjei.tool_stats.skull");
+        this.title = Component.translatable("tconjei_r.tool_stats.skull");
         this.statsIds = List.of(SkullStats.ID);
         this.recipeType = TConJEIPlugin.SKULL_STATS;
     }

@@ -77,12 +77,12 @@ public abstract class AbstractMaterialStatsCategory implements IRecipeCategory<M
     @Override
     public void draw(MaterialStatsWrapper wrapper, IRecipeSlotsView recipeSlotsView, GuiGraphics gui, double mouseX, double mouseY) {
         final int tier = wrapper.material().getTier();
-        final int color = MaterialTooltipCache.getColor(wrapper.getMaterialId()).getValue();
+        final int color = ColorProvider.getMaterialTextColor(wrapper.getMaterialId()).map(TextColor::getValue).orElse(0xAAAAAA);
         float lineNumber = 0f;
 
         // Name and Tier
         drawComponentShadowCentered(gui, Component.translatable(Util.makeTranslationKey("material", wrapper.getMaterialId())).withStyle(ChatFormatting.UNDERLINE), lineNumber++, color);
-        drawComponentShadowCentered(gui, Component.translatable("tconjei.tooltip.tier", tier), lineNumber++, ColorProvider.getTierColor(tier).orElse(color));
+        drawComponentShadowCentered(gui, Component.translatable("tconjei_r.tooltip.tier", tier), lineNumber++, ColorProvider.getTierColor(tier).orElse(color));
 
         List<IMaterialStats> statsList = statsIds.stream()
                 .map(wrapper::getStats)

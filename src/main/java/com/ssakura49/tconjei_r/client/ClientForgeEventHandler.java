@@ -38,7 +38,7 @@ public class ClientForgeEventHandler {
             if (wrapper.hasStats(getHarvestStatIds())) components.add(Component.translatable("tconjei_r.tooltip.harvest"));
             if (wrapper.hasStats(getRangedStatIds())) components.add(Component.translatable("tconjei_r.tooltip.ranged"));
             if (wrapper.hasStats(getArmorStatIds())) components.add(Component.translatable("tconjei_r.tooltip.armor"));
-            //if (wrapper.hasStats(CURIO_STAT_IDS)) components.add(Component.translatable("tconjei.tooltip.curio"));
+            //if (wrapper.hasStats(CURIO_STAT_IDS)) components.add(Component.translatable("tconjei_r.tooltip.curio"));
             if (wrapper.hasStats(getLaserGunStatIds())) components.add(Component.translatable("tconjei_r.tooltip.laser_gun"));
             if (wrapper.hasStats(List.of(SkullStats.ID))) components.add(Component.translatable("tconjei_r.tooltip.skull"));
 
@@ -58,18 +58,18 @@ public class ClientForgeEventHandler {
                 int i = 0;
                 for (; i < components.size() - 1; i++) {
                     child.append(components.get(i))
-                            .append(Component.translatable("tconjei.tooltip.separator"));
+                            .append(Component.translatable("tconjei_r.tooltip.separator"));
                 }
-                child.append(Component.translatable("tconjei.tooltip.and"))
+                child.append(Component.translatable("tconjei_r.tooltip.and"))
                         .append(components.get(i));
             }
 
             child.append(" ")
-                    .append(Component.translatable("tconjei.tooltip.material"))
+                    .append(Component.translatable("tconjei_r.tooltip.material"))
                     .withStyle(ChatFormatting.GRAY);
 
             int tier = wrapper.material().getTier();
-            MutableComponent component = Component.translatable("tconjei.tooltip.tier", tier)
+            MutableComponent component = Component.translatable("tconjei_r.tooltip.tier", tier)
                     .withStyle(style -> style.withColor(ColorProvider.getTierColor(tier).orElse(0xAAAAAA)))
                     .append(child);
 
@@ -80,73 +80,7 @@ public class ClientForgeEventHandler {
             }
         }
     }
-//
-//            for (ItemStack stack : wrapper.getInputs()) {
-//                if (!(stack.getItem() instanceof RepairKitItem)) {
-//                    allMaterialsTooltip.put(stack.getItem(), component);
-//                }
-//            }
-//        }
-//    }
 
-    // TODO: might have problems if server changes and valid materials change too
-    // runs on reload too
-/*
-    @SubscribeEvent
-    public static void onLogin(RecipesUpdatedEvent event) {
-        allMaterialsTooltip.clear();
-
-        if (!ClientConfig.ENABLE_TOOLTIP.get()) return;
-
-        for (MaterialStatsWrapper wrapper : Utils.getMaterialWrappers()) {
-            List<Component> components = new ArrayList<>();
-
-            if (wrapper.hasStats(getHarvestStatIds())) components.add(Component.translatable("tconjei.tooltip.harvest"));
-            if (wrapper.hasStats(getRangedStatIds())) components.add(Component.translatable("tconjei.tooltip.ranged"));
-            if (wrapper.hasStats(getArmorStatIds())) components.add(Component.translatable("tconjei.tooltip.armor"));
-            //if (wrapper.hasStats(CURIO_STAT_IDS)) components.add(Component.translatable("tconjei.tooltip.curio"));
-            if (wrapper.hasStats(getLaserGunStatIds())) components.add(Component.translatable("tconjei.tooltip.laser_gun"));
-            if (wrapper.hasStats(List.of(SkullStats.ID))) components.add(Component.translatable("tconjei.tooltip.skull"));
-
-            for (var reg : TooltipRegistry.REGISTRATIONS) {
-                if (wrapper.hasStats(reg.statsIds())) {
-                    components.add(reg.tooltipComponent());
-                }
-            }
-
-            if (components.isEmpty()) continue;
-
-            MutableComponent child = Component.literal(" ") ;
-
-            if (components.size() == 1) {
-                child.append(components.get(0));
-            } else {
-                int i = 0;
-                for (; i < components.size() - 1; i++) {
-                    child.append(components.get(i))
-                            .append(Component.translatable("tconjei.tooltip.separator"));
-                }
-                child.append(Component.translatable("tconjei.tooltip.and"))
-                        .append(components.get(i));
-            }
-
-            child.append(" ")
-                    .append(Component.translatable("tconjei.tooltip.material"))
-                    .withStyle(ChatFormatting.GRAY);
-
-            int tier = wrapper.material().getTier();
-            MutableComponent component = Component.translatable("tconjei.tooltip.tier", tier)
-                    .withStyle(style -> style.withColor(ColorProvider.getTierColor(tier).orElse(0xAAAAAA)))
-                    .append(child);
-
-            for (ItemStack stack : wrapper.getInputs()) {
-                if (!(stack.getItem() instanceof RepairKitItem)) {
-                    allMaterialsTooltip.put(stack.getItem(), component);
-                }
-            }
-        }
-    }
-*/
     @SubscribeEvent
     public static void onToolTip(ItemTooltipEvent event) {
         if (!ClientConfig.ENABLE_TOOLTIP.get()) return;

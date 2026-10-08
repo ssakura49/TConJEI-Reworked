@@ -2,6 +2,7 @@ package com.ssakura49.tconjei_r.client;
 
 import com.mojang.logging.LogUtils;
 import com.ssakura49.tconjei_r.ColorProvider;
+import com.ssakura49.tconjei_r.datapack.ColorJsonLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -24,6 +25,12 @@ public class ClientModEventHandler {
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
+        try {
+            ColorJsonLoader.load(Minecraft.getInstance().getResourceManager());
+        } catch (Exception e) {
+            LogUtils.getLogger().warn("Failed to load tconjei colour data", e);
+        }
+
         File folder = new File("resourcepacks");
         File copy = new File(folder, "tconjeidark.zip");
 

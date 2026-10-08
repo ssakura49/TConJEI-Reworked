@@ -16,7 +16,7 @@ public class RangedStatsCategory extends AbstractMaterialStatsCategory {
     public RangedStatsCategory(IGuiHelper guiHelper) {
         super(guiHelper);
         this.icon = guiHelper.createDrawable(new ResourceLocation(MOD_ID, "textures/gui/jei.png"), 16, 0, 16, 16);
-        this.title = Component.translatable("tconjei.tool_stats.ranged");
+        this.title = Component.translatable("tconjei_r.tool_stats.ranged");
         this.recipeType = TConJEIPlugin.RANGED_STATS;
         this.statsIds = List.of(LimbMaterialStats.ID, GripMaterialStats.ID, StatlessMaterialStats.BOWSTRING.getIdentifier());
         this.tag = TinkerTags.Items.RANGED;

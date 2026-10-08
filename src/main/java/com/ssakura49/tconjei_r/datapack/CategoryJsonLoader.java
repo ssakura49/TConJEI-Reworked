@@ -37,7 +37,7 @@ public final class CategoryJsonLoader {
             TConJEI.LOGGER.warn("CategoryJsonLoader: no resource manager available, skipping data-driven categories");
             return;
         }
-        Map<ResourceLocation, Resource> files = manager.listResources("tconjei/categories", loc -> loc.getPath().endsWith(".json"));
+        Map<ResourceLocation, Resource> files = manager.listResources("jei/categories", loc -> loc.getPath().endsWith(".json"));
         if (files.isEmpty()) return;
         int loaded = 0;
         int skipped = 0;

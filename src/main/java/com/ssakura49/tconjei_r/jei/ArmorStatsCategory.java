@@ -7,6 +7,7 @@ import mezz.jei.api.helpers.IGuiHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.client.materials.MaterialTooltipCache;
@@ -26,7 +27,7 @@ public class ArmorStatsCategory extends AbstractMaterialStatsCategory {
     public ArmorStatsCategory(IGuiHelper guiHelper) {
         super(guiHelper);
         this.icon = guiHelper.createDrawable(new ResourceLocation(MOD_ID, "textures/gui/jei.png"), 32, 0, 16, 16);
-        this.title = Component.translatable("tconjei.tool_stats.armor");
+        this.title = Component.translatable("tconjei_r.tool_stats.armor");
         this.recipeType = TConJEIPlugin.ARMOR_STATS;
         this.statsIds = List.of(PlatingMaterialStats.HELMET.getId(), PlatingMaterialStats.CHESTPLATE.getId(), PlatingMaterialStats.LEGGINGS.getId(), PlatingMaterialStats.BOOTS.getId(), PlatingMaterialStats.SHIELD.getId(), StatlessMaterialStats.SHIELD_CORE.getIdentifier(), StatlessMaterialStats.MAILLE.getIdentifier());
         this.tag = TinkerTags.Items.ARMOR;
@@ -35,12 +36,13 @@ public class ArmorStatsCategory extends AbstractMaterialStatsCategory {
     @Override
     public void draw(MaterialStatsWrapper wrapper, IRecipeSlotsView recipeSlotsView, GuiGraphics gui, double mouseX, double mouseY) {
         final int tier = wrapper.material().getTier();
-        final int color = MaterialTooltipCache.getColor(wrapper.getMaterialId()).getValue();
+        final int color = ColorProvider.getMaterialTextColor(wrapper.getMaterialId()).map(TextColor::getValue).orElse(0xAAAAAA);
+
         float lineNumber = 0f;
 
         // name and tier
         drawComponentShadowCentered(gui, Component.translatable(Util.makeTranslationKey("material", wrapper.getMaterialId())).withStyle(ChatFormatting.UNDERLINE), lineNumber++, color);
-        drawComponentShadowCentered(gui, Component.translatable("tconjei.tooltip.tier", tier), lineNumber++, ColorProvider.getTierColor(tier).orElse(color));
+        drawComponentShadowCentered(gui, Component.translatable("tconjei_r.tooltip.tier", tier), lineNumber++, ColorProvider.getTierColor(tier).orElse(color));
 
         List<IMaterialStats> statsList = getStatsPresent(wrapper);
 
